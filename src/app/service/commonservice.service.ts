@@ -33,7 +33,7 @@ login(){
 }
   
   /* Get API Example */
-  getCreditcardFilterDetailsData(monthVal: string, yearVal: number) : Observable<expensesDataModel | null> {
+  getsampleprojectFilterDetailsData(monthVal: string, yearVal: number) : Observable<expensesDataModel | null> {
     let getapiUrl = this.apiURL+REST_API_CONTEXT_PATHS.EXPENSES_DATA_REST_URL +'?year='+ yearVal + "&month=" + monthVal;
     return this.http.get(getapiUrl).pipe(map((res: any) => {
       let resData = res;
@@ -50,7 +50,7 @@ login(){
   
 
   /* Post API Sample*/
-  enterCreditcardData(requestVal: any): Observable<any | null> {
+  entersampleprojectData(requestVal: any): Observable<any | null> {
     let postapiURL = this.apiURL+REST_API_CONTEXT_PATHS.ADD_DETAILS_REST_URL;
     return this.http.post(postapiURL, requestVal).pipe(
       map(response => {

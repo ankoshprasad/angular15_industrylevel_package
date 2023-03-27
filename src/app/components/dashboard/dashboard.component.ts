@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
 		this.customLoader = true;
 		const monthVal:string = 'JANUARY';
 		const yearVal:number = 2022;
-		this.service.getCreditcardFilterDetailsData(monthVal, yearVal).subscribe((getListData: any) => {
+		this.service.getsampleprojectFilterDetailsData(monthVal, yearVal).subscribe((getListData: any) => {
 			console.log(getListData.expenses)
 		},
 			(error: any) => {
@@ -38,11 +38,11 @@ export class DashboardComponent implements OnInit {
 	}
 	
 	/* POST API Calling */
-	postCreditcardDataData() {
+	postsampleprojectDataData() {
 		this.customLoader = true;
 		this.jobForm.value = null;
 		let requestVal = JSON.stringify(this.jobForm.value);
-		this.service.enterCreditcardData(requestVal).subscribe((data: any) => {
+		this.service.entersampleprojectData(requestVal).subscribe((data: any) => {
 			this.customLoader = false;
 		},
 			(error) => {
