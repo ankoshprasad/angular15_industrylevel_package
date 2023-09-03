@@ -15,14 +15,58 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class DashboardComponent implements OnInit {
 	customLoader: boolean = false;
+	userSelect:any[] = [];
+	documenttypes :any[] = [];
+	documenttypes1 :any[] =[];
+	getDataForm: FormGroup;
 	jobForm = {"value":null}
-	constructor(private service: CommonserviceService) {
-		
+	constructor(private service: CommonserviceService, private fb: FormBuilder) {
+		this.getDataForm = this.fb.group({
+			month1: new FormControl(null),
+			year1: new FormControl(null),
+		})
 	}
 	ngOnInit() {
 	this.getfilterData();
-	}
+	this.getMyData();
 	
+	}
+getMyData(){
+	this.service.expensedoclist().subscribe((getListData: any) => {
+	
+		console.log(getListData.expenses)
+		this.documenttypes = getListData.expenses
+	
+	},
+		(error: any) => {
+			//	this.noData = true;
+		}
+	);
+}
+
+	submitExpired(){
+		
+		this.service.expensedoclist().subscribe((getListData: any) => {
+			this.documenttypes = getListData.expenses
+			const requestVal = this.documenttypes.map(({ docName, ...item }) => item);
+			console.log(requestVal)
+		this.service.submitexpense(requestVal).subscribe((data: any) => {
+			this.customLoader = false;
+
+		},
+			(error) => {
+
+			}
+		)
+		
+		},
+			(error: any) => {
+				//	this.noData = true;
+			}
+		);
+		
+	
+	}
 	/* GET API Calling */
 	getfilterData() {
 		this.customLoader = true;

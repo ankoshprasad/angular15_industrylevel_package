@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    rest_api_domain: 'https://stageUAEverify.dv.u.ae',
+    rest_api_domain: 'http://localhost/REST-API',
   };
